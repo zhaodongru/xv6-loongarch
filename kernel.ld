@@ -3,8 +3,13 @@
 
 /*OUTPUT_FORMAT("elf32-i386", "elf32-i386", "elf32-i386")
 OUTPUT_ARCH(i386)*/
-OUTPUT_FORMAT("elf32-tradlittlemips", "elf32-tradlittlemips", "elf32-tradlittlemips")
-OUTPUT_ARCH(mips)
+
+/*OUTPUT_FORMAT("elf32-tradlittlemips", "elf32-tradlittlemips", "elf32-tradlittlemips")
+OUTPUT_ARCH(loongarch)*/
+
+OUTPUT_FORMAT("elf64-loongarch", "elf64-loongarch", "elf64-loongarch")
+OUTPUT_ARCH(loongarch)
+
 ENTRY(_start)
 
 SECTIONS

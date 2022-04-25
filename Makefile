@@ -28,7 +28,8 @@ OBJS = \
 	vm.o\
 
 # Cross-compiling (e.g., on Mac OS X)
-TOOLPREFIX = mipsel-sde-elf-
+#TOOLPREFIX = mipsel-sde-elf-
+TOOLPREFIX = /opt/cross-tools/bin/loongarch64-unknown-linux-gnu-
 
 # Using native tools (e.g., on X86 Linux)
 #TOOLPREFIX = 
@@ -70,15 +71,16 @@ QEMU = $(shell if which qemu > /dev/null; \
 endif
 
 CC = $(TOOLPREFIX)gcc
-AS = $(TOOLPREFIX)gas
+AS = $(TOOLPREFIX)as
 LD = $(TOOLPREFIX)ld
 OBJCOPY = $(TOOLPREFIX)objcopy
 OBJDUMP = $(TOOLPREFIX)objdump
-CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -fvar-tracking -fvar-tracking-assignments -O0 -g -std=gnu99 -Wall -Wunused-function -MD -gdwarf-2 -march=mips4 -G0 -fno-omit-frame-pointer -I.
+CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -fvar-tracking -fvar-tracking-assignments -O0 -g -std=gnu99 -Wall -Wunused-function -MD -gdwarf-2 -march=loongarch64 -G0 -fno-omit-frame-pointer -I.
 CFLAGS += $(shell $(CC) -fno-stack-protector -E -x c /dev/null >/dev/null 2>&1 && echo -fno-stack-protector)
-ASFLAGS = -gdwarf-2 -I. -G0 -march=mips4
+ASFLAGS = -gdwarf-2 -I. -G0 -march=loongarch64
 # FreeBSD ld wants ``elf_i386_fbsd''
-LDFLAGS += -m elf32ltsmip -L. -G0
+# LDFLAGS += -m elf32ltsmip -L. -G0
+LDFLAGS += -m elf64loongarch -L. -G0
 
 xv6memfs.img: kernelmemfs
 	dd if=/dev/zero of=xv6memfs.img count=10000

@@ -4,10 +4,7 @@
 #define SYSCALL(name) \
   .globl name; \
   name: \
-    li $v0, SYS_ ## name; \
-    syscall; \
-    jr $ra; \
-    nop
+    ori $r12, $r12, 0x1f
 
 SYSCALL(fork)
 SYSCALL(exit)

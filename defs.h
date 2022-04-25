@@ -179,15 +179,15 @@ void            kvmalloc(void);
 void            vmenable(void);
 pde_t*          setupkvm(void);
 char*           uva2ka(pde_t*, char*);
-int             allocuvm(pde_t*, char, uint, uint);
-int             deallocuvm(pde_t*, uint, uint);
+int             allocuvm(pde_t*, char, ulong, ulong);
+int             deallocuvm(pde_t*, ulong, ulong);
 void            freevm(pde_t*);
-void            inituvm(pde_t*, char, char*, uint);
-int             loaduvm(pde_t*, char*, struct inode*, uint, uint);
-pde_t*          copyuvm(pde_t*, char, uint);
+void            inituvm(pde_t*, char, char*, ulong);
+int             loaduvm(pde_t*, char*, struct inode*, ulong, ulong);
+pde_t*          copyuvm(pde_t*, char, ulong);
 void            switchuvm(struct proc*);
 void            switchkvm(void);
-int             copyout(pde_t*, uint, void*, uint);
+int             copyout(pde_t*, ulong, void*, ulong);
 void            clearpteu(pde_t *pgdir, char *uva);
 
 // number of elements in fixed-size array
