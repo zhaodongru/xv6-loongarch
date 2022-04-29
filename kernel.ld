@@ -10,15 +10,15 @@ OUTPUT_ARCH(loongarch)*/
 OUTPUT_FORMAT("elf64-loongarch", "elf64-loongarch", "elf64-loongarch")
 OUTPUT_ARCH(loongarch)
 
-ENTRY(_start)
+ENTRY(kernel_entry)
 
 SECTIONS
 {
 	/* Link the kernel at this address: "." means the current address */
         /* Must be equal to KERNLINK */
-	. = 0x80100000;
+	. = 0x9000000000200000;
 
-	.text : AT(0x100000) {
+	.text :{
 		*(.text .stub .text.* .gnu.linkonce.t.*)
 	}
 
